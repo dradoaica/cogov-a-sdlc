@@ -10,7 +10,7 @@ folder.
 
 ## Conventions
 
-- Pin or document supported versions (e.g. minimum Node, .NET, JDK).
+- Pin or document supported versions (e.g., minimum Node, .NET, JDK).
 - List canonical commands for format, lint, test, and build where the team has agreed on them.
 - Distinguish **runtime** (language VM, compiler) from **framework** (app structure in `../application-frameworks/`) and
   **platform** (hosting in `../application-platforms/`).

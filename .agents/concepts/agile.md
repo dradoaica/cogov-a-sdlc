@@ -20,7 +20,7 @@ User stories are maintained in [docs/user-stories](../../docs/user-stories).
 - **Refinement:** clarify acceptance criteria, dependencies, and risks *before* iteration planning—not during “coding
   only.”
 - **Iteration (sprint) backlog:** subset the team commits to for the iteration; scope changes go through the product
-  owner and governance (e.g. change record if production risk).
+  owner and governance (e.g., change record if production risk).
 
 Naming and tooling (Jira, GitHub Projects, etc.) are **team-specific**; this repo standardizes **where markdown
 artifacts live** under `docs/user-stories/`.

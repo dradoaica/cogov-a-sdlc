@@ -4,7 +4,7 @@
 
 | Field             | Value                                    |
 |-------------------|------------------------------------------|
-| **Version**       | e.g. 0.1                                 |
+| **Version**       | e.g., 0.1                                |
 | **Status**        | Draft \| Proposed \| Accepted \| Retired |
 | **Service owner** |                                          |
 | **Last updated**  | YYYY-MM-DD                               |
@@ -39,7 +39,7 @@
 
 ## Security & privacy
 
-- **Data classes:** {e.g. public / internal / confidential}
+- **Data classes:** {e.g., public / internal / confidential}
 - **Authentication / authorization:** {model}
 - **Secrets:** {where stored, rotation}
 - **Compliance:** {if any}
@@ -57,7 +57,7 @@
 
 ## Transition & lifecycle
 
-- **Deployment model:** {e.g. blue/green, canary}
+- **Deployment model:** {e.g., blue/green, canary}
 - **Rollback:** {…}
 - **Decommission:** {…}
 

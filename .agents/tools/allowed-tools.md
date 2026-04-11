@@ -6,7 +6,7 @@ Applies to all AI agents operating in this repository.
 
 ## Policy
 
-- A tool is **allowed** only if it is listed below (or is an obvious sub-capability of a listed tool, e.g. reading a
+- A tool is **allowed** only if it is listed below (or is an obvious sub-capability of a listed tool, e.g., reading a
   file after listing a directory).
 - If the human explicitly authorizes a tool in the current session, the agent may use it **only for that session** and
   must note that authorization in the response `Sources` block.

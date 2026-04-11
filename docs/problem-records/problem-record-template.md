@@ -39,7 +39,7 @@
 
 ### Contributing factors
 
-- {e.g. missing test, operational gap, design debt}
+- {e.g., missing test, operational gap, design debt}
 
 ## Corrective actions
 

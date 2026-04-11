@@ -27,6 +27,9 @@ bindings, model selection).
 
 | Vendor file                            | Relationship to this file                                                   |
 |----------------------------------------|-----------------------------------------------------------------------------|
+| `AGENTS.md` (repository root)          | Adapter for Codex, OpenCode, and similar; must defer to this file           |
+| `GEMINI.md` (repository root)          | Gemini CLI context; may `@` import `.gemini/GEMINI.md`                      |
+| `.gemini/GEMINI.md`                    | Gemini CLI modular context; must defer to this file                         |
 | `.github/copilot-instructions.md`      | Must `@reference` this file; may add VS Code / Copilot-specific tool config |
 | `.claude/CLAUDE.md`                    | Must `@reference` this file; may add Claude-specific tool bindings          |
 | `.cursor/rules/co-governed-a-sdlc.mdc` | Adapter (`alwaysApply`); defers here; Cursor-only extensions allowed        |
@@ -79,7 +82,7 @@ Before producing any “real work” (design, code, config, process changes), do
     - If something is missing, **you draft it** under the appropriate **persona** (see “Artifact ownership” below), mark
       status as **Draft** or **Proposed**, and surface it for **human review** when the gate requires approval.
     - **Do not** implement durable technical choices or production-impacting work without passing the relevant gate
-      (e.g. accepted decision record before implementation).
+      (e.g., accepted decision record before implementation).
 2. **State the current SSDLC phase** (Planning / Design / Coding / Testing / Release / Maintenance).
 3. **Apply the phase gate** from “SSDLC Phase Awareness” below.
 4. **Work only within what the artifact(s) authorize** once approved. If coverage is unclear, **draft** the missing

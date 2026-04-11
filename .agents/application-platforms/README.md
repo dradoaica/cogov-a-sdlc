@@ -1,6 +1,6 @@
 # Application platforms
 
-**Platform-specific** configuration, deployment, and operational constraints (e.g. cloud PaaS, orchestrators, sidecar
+**Platform-specific** configuration, deployment, and operational constraints (e.g., cloud PaaS, orchestrators, sidecar
 runtimes). Each subdirectory names one platform or deployment target.
 
 ## When to read

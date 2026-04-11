@@ -11,8 +11,8 @@ The **single canonical entrypoint** for AI agents and humans using agents in thi
 
 - `.agents/AGENTS.md`
 
-If you are configuring a tool/vendor (Copilot, Claude, OpenAI, etc.), use its adapter file (e.g.
-`.github/copilot-instructions.md`) which defers to `.agents/AGENTS.md`.
+If you are configuring a tool/vendor (Copilot, Claude, OpenAI, Gemini, Codex, OpenCode, etc.), use its adapter file
+(e.g., `.github/copilot-instructions.md`, root `AGENTS.md`, or `GEMINI.md`) which defers to `.agents/AGENTS.md`.
 
 Use the `docs/initial-product-specs/README.md` to begin.
 
@@ -48,3 +48,15 @@ Git records submodules in **`.gitmodules`** at the repository root. That file is
 - **Service design packages (SDPs)**: `docs/sdps/`
 - **Change records**: `docs/change-records/`
 - **Problem records**: `docs/problem-records/`
+
+## Extending agent governance
+
+Add personas, rules, skills, commands, tools, and similar assets from community lists, for example:
+
+- [github/awesome-copilot](https://github.com/github/awesome-copilot)
+- [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+- [wshobson/agents](https://github.com/wshobson/agents)
+- [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
+- [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules)
+
+Imports must not override `.agents/AGENTS.md`; check license and policy fit.

@@ -1,6 +1,6 @@
 # Application frameworks
 
-**Framework-specific** coding conventions, patterns, and constraints (e.g. Angular, ASP.NET Core). Each subdirectory
+**Framework-specific** coding conventions, patterns, and constraints (e.g., Angular, ASP.NET Core). Each subdirectory
 names one framework or stack family.
 
 ## When to read

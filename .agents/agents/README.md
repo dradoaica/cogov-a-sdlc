@@ -6,7 +6,7 @@ persona applies and adopt its constraints.
 ## Artifacts: agents draft, humans review
 
 By default, **agents produce** governance artifacts (draft ADRs, user stories, change records, SDPs, problem records)
-using the templates under `docs/`. **Humans review and approve** when a gate requires it (e.g. **Accepted** ADR before
+using the templates under `docs/`. **Humans review and approve** when a gate requires it (e.g., **Accepted** ADR before
 implementation, approved change for production). See **Artifact ownership** in `.agents/AGENTS.md` for which persona
 typically drafts what.
 

@@ -6,7 +6,7 @@
 |-----------------|----------------------------------------------------|
 | **ID**          | US-{number-or-key}                                 |
 | **Status**      | Draft \| Ready \| In progress \| Done \| Cancelled |
-| **Priority**    | (e.g. Must / Should / Could)                       |
+| **Priority**    | (e.g., Must / Should / Could)                      |
 | **Owner**       |                                                    |
 | **SSDLC phase** | Planning \| Design \| …                            |
 

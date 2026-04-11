@@ -16,7 +16,7 @@ Commands are **repeatable, strictly-scoped task specs** that an agent can execut
 
 ## Naming and structure
 
-- **File naming**: `cmd-<verb>-<object>.md` (e.g. `cmd-draft-adr.md`)
+- **File naming**: `cmd-<verb>-<object>.md` (e.g., `cmd-draft-adr.md`)
 - **One command = one outcome**: keep each command single-purpose.
 - **No hidden work**: if a command needs other artifacts (ADR, change record), it must declare them as preconditions.
 
