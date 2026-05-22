@@ -54,9 +54,12 @@ Git records submodules in **`.gitmodules`** at the repository root. That file is
 Add personas, rules, skills, commands, tools, and similar assets from community lists, for example:
 
 - [github/awesome-copilot](https://github.com/github/awesome-copilot)
-- [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code)
+- [affaan-m/ECC](https://github.com/affaan-m/ECC)
+- [mattpocock/skills](https://github.com/mattpocock/skills)
+- [addyosmani/agent-skills](http://github.com/addyosmani/agent-skills)
 - [wshobson/agents](https://github.com/wshobson/agents)
 - [hesreallyhim/awesome-claude-code](https://github.com/hesreallyhim/awesome-claude-code)
 - [PatrickJS/awesome-cursorrules](https://github.com/PatrickJS/awesome-cursorrules)
+- [ComposioHQ/awesome-codex-skills](https://github.com/ComposioHQ/awesome-codex-skills)
 
 Imports must not override `.agents/AGENTS.md`; check license and policy fit.
