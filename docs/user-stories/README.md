@@ -31,6 +31,6 @@ Recommended patterns (pick one and stay consistent):
 - Clear **As a / I want / So that**
 - **Testable** acceptance criteria
 - Explicit **non-goals**
-- **Security & compliance** notes (or “N/A” with rationale)
+- **Security & compliance** notes (or "N/A" with rationale)
 - `Sources` links to decision records / SDPs / change records when relevant
 
