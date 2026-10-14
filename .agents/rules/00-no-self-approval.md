@@ -34,8 +34,7 @@ defeats the purpose of a gate rather than merely weakening it.
 - Human reviewer confirms that every merge/accept/deploy carries a human approver, not an agent, at the MR boundary.
 - Any approval action in an agent transcript that lacks a corresponding human decision is a rule violation and the
   change must be reopened for human review.
-- Future automated enforcement is tracked under `.agents/AGENTS.md` → Governance Guardrails (Planned automation); it is
-  not yet live.
+- All governance rules are human-verified at the review boundary (see `.agents/AGENTS.md` → Governance Guardrails).
 
 ## Sources
 

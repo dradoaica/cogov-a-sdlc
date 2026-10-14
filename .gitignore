@@ -1,2 +1,23 @@
-/.idea/*
-.vscode
+# IDE and editor artifacts
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Operating system artifacts
+.DS_Store
+Thumbs.db
+
+# Build, test, and environment artifacts
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+node_modules/
+dist/
+build/
+.venv/
+venv/
+*.log

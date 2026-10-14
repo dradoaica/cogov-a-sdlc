@@ -14,7 +14,8 @@ subagents). Covers where each agent does its work and who may write to git.
 - The orchestrator **MUST** integrate subagent branches only after resolving contradictions between their outputs (see
   `.agents/AGENTS.md` → Orchestrator responsibilities) and **MUST NOT** silently merge conflicting outputs.
 - Merging or pushing to any **shared** branch, and opening an MR, remain subject to the human-approval gates in
-  `.agents/AGENTS.md` and to the pre-MR gate (full test suite, regression, static analysis, baseline-drift abort).
+  `.agents/AGENTS.md` and to all applicable pre-MR checks (full test suite, regression, static analysis, and
+  baseline-drift abort where relevant). Checks marked `N/A` require a rationale and human acceptance.
 - No agent may approve the resulting MR or deploy — see `.agents/rules/00-no-self-approval.md`.
 
 ## Rationale
@@ -36,8 +37,7 @@ everyone push to the same tree.
 - Human reviewer confirms the MR came from an orchestrator-integrated branch, not from subagents writing to a shared
   tree or merging independently.
 - Branch/worktree naming makes per-agent isolation visible in `git worktree list` and branch history.
-- Future automated enforcement is tracked under `.agents/AGENTS.md` → Governance Guardrails (Planned automation); it is
-  not yet live.
+- All governance rules are human-verified at the review boundary (see `.agents/AGENTS.md` → Governance Guardrails).
 
 ## Sources
 
