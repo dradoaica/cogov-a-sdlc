@@ -9,7 +9,7 @@ Read in this order for a new task:
 3. **Decision-record gate** if the work implies a durable technical choice.
 4. **Co-Governance Protocol** before any side effect action.
 5. Deeper sections (**Multi-Agent**, **DevEx/AgentEx**, **Maintainability**, **Anti-Sycophancy**, **Anti-Delusional**,
-   **Automated Governance**) as needed.
+   **Governance Guardrails**) as needed.
 
 ---
 
@@ -25,10 +25,10 @@ bindings, model selection).
 | `AGENTS.md` (repository root)          | Adapter for Codex, OpenCode, and similar; must defer to this file           |
 | `GEMINI.md` (repository root)          | Gemini CLI context; may `@` import `.gemini/GEMINI.md`                      |
 | `.gemini/GEMINI.md`                    | Gemini CLI modular context; must defer to this file                         |
-| `.github/copilot-instructions.md`      | Must `@reference` this file; may add VS Code / Copilot-specific tool config |
-| `.claude/CLAUDE.md`                    | Must `@reference` this file; may add Claude-specific tool bindings          |
+| `.github/copilot-instructions.md`      | Must defer to this file; may add VS Code / Copilot-specific tool config     |
+| `.claude/CLAUDE.md`                    | Must defer to this file; may add Claude-specific tool bindings              |
 | `.cursor/rules/co-governed-a-sdlc.mdc` | Adapter (`alwaysApply`); defers here; Cursor-only extensions allowed        |
-| `.openai/instructions.md`              | Must `@reference` this file; may add OpenAI-specific model config           |
+| `.openai/instructions.md`              | Must defer to this file; may add OpenAI-specific model config               |
 | `.ai/instructions.md`                  | Adapter entry point; must defer to this file                                |
 | `.agent/instructions.md`               | Adapter entry point; must defer to this file                                |
 
@@ -151,6 +151,7 @@ This repo keeps governance artifacts in these locations:
 | Decision records (typically MADR-style ADRs) | `docs/adrs/`            |
 | User stories                                 | `docs/user-stories/`    |
 | Service Design Packages (SDPs)               | `docs/sdps/`            |
+| Threat models                                | `docs/threat-models/`   |
 | Change records                               | `docs/change-records/`  |
 | Problem records                              | `docs/problem-records/` |
 
@@ -226,6 +227,26 @@ The orchestrating agent (the agent coordinating other agents, which may be the h
 - Collect and validate the handoff notes from each subagent before passing context forward.
 - Detect and surface contradictions between subagent outputs before presenting a combined result.
 - Never silently merge conflicting outputs.
+- **Hold the git monopoly.** The orchestrator is the **only** agent that commits and merges locally. Subagents hand off
+  changes on their own branches; the orchestrator integrates them after resolving contradictions. See
+  `.agents/rules/01-execution-isolation.md`.
+
+### Execution isolation (concurrent agents)
+
+When agents run concurrently, isolate their work so one agent can never disrupt another's:
+
+1. **One worktree per agent.** Each agent works in its own git worktree on its own branch. Agents do not share a working
+   tree. Everything is merged afterwards by the orchestrator.
+2. **One committer.** Only the orchestrator commits and merges locally (the git monopoly above). Subagents produce
+   changes in isolation and request a handoff; they do not merge into a shared or integration branch.
+3. **No self-approval.** No agent approves the MR or deploy that it (or another agent) produced; approval is a
+   human-only act. See `.agents/rules/00-no-self-approval.md`.
+4. **Gates before an MR.** An agent may open an MR only after the **pre-MR gate** passes: full test suite, regression
+   tests, and static analysis (e.g., Sonar/SAST). Where quality baselines exist (e.g., extraction accuracy), any
+   negative drift against baseline **aborts** the MR. See the pre-MR gate in **SSDLC Phase Awareness**.
+
+These rules are extensions in `.agents/rules/` (`00-no-self-approval.md`, `01-execution-isolation.md`); this document
+remains canonical if they ever conflict.
 
 ### Subagent responsibilities
 
@@ -399,6 +420,11 @@ This framework requires structural countermeasures embedded in agent behavior.
 - Approving **Accepted** status on a decision record, or treating a draft as final without human review when the gate
   requires review.
 
+**Hard rule - no self-approval.** An agent **MUST NOT** approve, review-as-approved, or merge any MR/PR, and **MUST
+NOT** trigger a deploy, that it (or another agent) produced. Approval is a human-only act; agent review may inform a
+human decision but never replaces it. This is forbidden, not merely discouraged - see
+`.agents/rules/00-no-self-approval.md`.
+
 ---
 
 ## SSDLC Phase Awareness
@@ -416,6 +442,21 @@ At the start of every task, identify the current SSDLC phase and apply the corre
 
 Never skip a phase gate. If the current phase's gate criteria are not yet met, block progress and surface the gap to the
 human. Maintenance is not the last phase - it feeds back into Planning. The SSDLC is a loop, not a line.
+
+### Pre-MR gate (before opening a merge request)
+
+Opening an MR is where Coding and Testing meet. An agent may open an MR **only after all of the following pass**:
+
+1. **Full test suite** green.
+2. **Regression tests** green (behavior-contract tests, not just the new feature's tests).
+3. **Static analysis** clean (e.g., Sonar, SAST, secrets scanning).
+4. **Baseline-drift abort** - where a quality baseline exists (e.g., extraction accuracy, performance, coverage), any
+   **negative drift** against the recorded baseline **aborts** the MR; it is not opened until the drift is explained and
+   accepted by a human or corrected.
+
+The agent that produced the change **must not** approve or merge the resulting MR (see Co-Governance Protocol -
+no-self-approval, and `.agents/rules/00-no-self-approval.md`). Under concurrency, only the orchestrator opens the MR
+after integrating isolated per-agent branches (see Multi-Agent Orchestration Protocol - Execution isolation).
 
 ---
 
@@ -442,13 +483,29 @@ These rules address hallucination and context drift (false premises the agent do
 
 ---
 
-## Automated Governance (Guardrails)
+## Governance Guardrails
 
-To ensure the integrity of the SDLC, automated checks and human-verified guardrails are enforced.
+These guardrails protect the integrity of the SDLC. **Today they are human-verified at the review boundary**
+(a human reviewer confirms them before approving a change). Automated enforcement is **planned, not yet implemented** -
+see "Planned automation" below. Do not describe these as automated gates until the corresponding check exists.
+
+### Enforced today (human-verified)
 
 - **Documentation-Backed Changes**: No code change is permitted without a corresponding reference to an **Accepted** ADR
   or an **Approved** User Story.
-- **Traceability Linter**: Every significant output must pass a traceability check. If "Sources" are missing or refer to
-  unapproved drafts, the task is incomplete.
-- **Learning Loop Verification**: When closing a Problem Record, the system must verify that at least one rule, skill,
-  or persona has been updated to prevent recurrence.
+- **Traceability Linter (manual)**: Every significant output must pass a traceability check. If "Sources" are missing or
+  refer to unapproved drafts, the task is incomplete. Until automated, the reviewer performs this check.
+- **Learning Loop Verification (manual)**: When closing a Problem Record, confirm that at least one rule, skill, or
+  persona has been updated to prevent recurrence.
+
+### Planned automation (not yet implemented)
+
+The following do not exist in this repository yet; they are the target state, tracked as improvement work:
+
+- A **traceability linter** in CI that fails a change whose `Sources` block is missing or points at files/statuses that
+  are not **Accepted**/**Approved**.
+- A **documentation-backed-changes** check that blocks a merge lacking a reference to an Accepted ADR or Approved story.
+- **Learning-loop verification** wired to Problem Record closure.
+
+When one of these ships, move it from "Planned automation" to "Enforced today" and name the workflow/script that
+enforces it.
