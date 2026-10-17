@@ -54,6 +54,7 @@ Git records submodules in **`.gitmodules`** at the repository root. That file is
 
 Add personas, rules, skills, commands, tools, and similar assets from community lists, for example:
 
+- [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
 - [github/awesome-copilot](https://github.com/github/awesome-copilot)
 - [affaan-m/ECC](https://github.com/affaan-m/ECC)
 - [mattpocock/skills](https://github.com/mattpocock/skills)
