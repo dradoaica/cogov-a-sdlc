@@ -57,8 +57,9 @@ to it instead of creating a parallel artifact.
 
 ## Claim work early
 
-Push a story's `owner` and `In progress` status to the shared trunk (or assign it in the issue tracker) **when work
-starts**, not when it ends. If the story is already `In progress` under another owner, stop and tell the human.
+Claim a story **when work starts**, not when it ends: assign it in the issue tracker, or open a draft MR/PR that sets
+its `owner` and `In progress` status. Before starting, check both (and the shared trunk); if the story is already
+claimed by another owner, stop and tell the human.
 
 ## Governance reconciliation (after every sync)
 
@@ -70,10 +71,10 @@ run these checks over all artifacts' front matter and report the results:
 | 1 | Duplicate identifiers | Two artifacts share an `id`, or a filename does not match its `id`                                |
 | 2 | Duplicate artifacts   | Two artifacts cover the same story, service, threat scope, or decision concern                    |
 | 3 | Contradictory records | Two `Accepted` records decide the same concern, or two artifacts state incompatible rules         |
-| 4 | Broken references     | A `Sources` entry or `depends-on` cites a missing or renumbered identifier                        |
+| 4 | Broken references     | `depends-on` cites a missing or renumbered identifier, or `Sources` cites one not in `depends-on` |
 | 5 | Stale premises        | A `Proposed`/`Ready`/`In progress` artifact depends on a `Rejected`/`Deprecated`/`Superseded` one |
 | 6 | Status conflicts      | Branches applied different status transitions to the same artifact                                |
-| 7 | Ownership conflicts   | One story is `In progress` under different owners                                                 |
+| 7 | Ownership conflicts   | One story is claimed or `In progress` under different owners                                      |
 | 8 | Approval evidence     | A binding status lacks `approved-by`, or it does not match the MR/PR approver                     |
 
 Report each finding with file paths, check number, and resolution options (supersede, reject, merge and cancel the

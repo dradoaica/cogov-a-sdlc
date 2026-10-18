@@ -4,12 +4,12 @@ status: Proposed
 date:
 decides:
 owner:
-approved-by: []
-decision-makers: []
-consulted: []
-informed: []
-depends-on: []
-supersedes: []
+approved-by: [ ]
+decision-makers: [ ]
+consulted: [ ]
+informed: [ ]
+depends-on: [ ]
+supersedes: [ ]
 superseded-by: ""
 ---
 

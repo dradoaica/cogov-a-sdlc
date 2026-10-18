@@ -15,7 +15,8 @@ Use the template:
 
 Copy the front matter from `sdp-template.md` and keep every key.
 
-- `depends-on` lists identifiers, not paths.
+- `depends-on` is the canonical dependency list (identifiers, not paths); `Sources` adds paths for readers and
+  cites nothing missing from it.
 - Only a human sets `approved-by`.
 - Binding statuses take effect only once merged to the shared trunk.
 

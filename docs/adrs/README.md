@@ -21,7 +21,8 @@ The MADR documentation is available at <https://adr.github.io/madr/> while gener
 Copy the front matter from the chosen template and keep every key.
 
 - `decides` names the one concern decided; at most one `Accepted` ADR per concern.
-- `depends-on` lists identifiers, not paths.
+- `depends-on` is the canonical dependency list (identifiers, not paths); `Sources` adds paths for readers and
+  cites nothing missing from it.
 - Only a human sets `approved-by`.
 - Binding statuses take effect only once merged to the shared trunk.
 
