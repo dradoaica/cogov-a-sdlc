@@ -1,54 +1,95 @@
 # Contributing to Co-Governed Agentic SDLC
 
-Thank you for your interest in contributing to Co-Governed Agentic SDLC! We're excited to collaborate with you and see
-how together we can improve and evolve this application.
+Thank you for your interest in contributing! Co-Governed Agentic SDLC is a spec-first framework of Markdown
+instructions, protocols, rules, personas, and templates that AI agents and humans follow together. Contributions are
+almost always changes to Markdown, but many of those files are instructions that agents execute, so we review them
+with the same care as code.
 
-## Getting Started
+## Before You Start
 
-If this is your first visit, a great way to begin is by tackling issues tagged as `"help wanted"` or
-`"good first issue"`. These are specially curated to help you get acquainted with the project and make a meaningful
-impact early on.
+- Read [`README.md`](README.md) for the repository layout and [`.agents/AGENTS.md`](.agents/AGENTS.md) for the
+  canonical agent contract.
+- Look for issues labeled `good first issue` or `help wanted`.
+- For anything beyond a small fix, open an issue first so we can agree on the approach before you write it.
 
-## Spot a Typo?
+## Using AI Agents to Contribute
 
-Typos and other small fixes are important to us -— no contribution is too small! If you spot something small, go ahead
-and open a Pull Request. For these types of contributions, there's no need to create a separate issue.
+You are welcome to use AI agents. When you do, the framework governs this repository too:
 
-## Have a Suggestion?
+- Your agent must follow `.agents/AGENTS.md` and the protocols it loads on demand; every vendor adapter file defers to
+  it.
+- An agent must not approve, review-as-approved, or merge a change it produced (see [
+  `.agents/rules/00-no-self-approval.md`](.agents/rules/00-no-self-approval.md)). A human reviews every PR.
+- You are responsible for every line you submit. Read your agent's output before you open the PR.
+- Say in the PR description that the change was AI-assisted, and which tool you used.
 
-If you have a suggestion on how to enhance Co-Governed Agentic SDLC, please open an issue with the following details:
+## Types of Contribution
 
-- A clear title and description of the suggestion
-- Any relevant examples or mockups
-- Indicate whether you're interested in implementing the feature yourself
+State the change tier in your PR (see `.agents/AGENTS.md` → Change classification triage matrix). The table below maps
+common contributions to what we expect:
 
-We'll review your suggestion and have a discussion about its potential inclusion in the project.
+| Contribution                                                           | Before opening the PR                                                                               | Typical tier |
+|------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------|--------------|
+| Typos, broken links, formatting                                        | Nothing; open the PR directly                                                                       | Tier 4       |
+| Clarifying wording with no change in meaning                           | Nothing; explain in the PR why the old wording was unclear                                          | Tier 4       |
+| Changing a gate, rule, protocol, or `.agents/AGENTS.md` semantics      | Open an issue describing the problem, the proposed change, and which existing statements it affects | Tier 1       |
+| New vendor adapter                                                     | Follow [`.agents/protocols/vendor-adapters.md`](.agents/protocols/vendor-adapters.md)               | Tier 2       |
+| New or imported persona, skill, rule, or command                       | Follow [`.agents/rules/10-imported-assets.md`](.agents/rules/10-imported-assets.md) for imports     | Tier 2       |
+| Template changes under `docs/` (front matter keys, sections, statuses) | Open an issue; check every protocol and README that references the changed keys                     | Tier 1       |
+| Concept pages under `.agents/concepts/`                                | Cite the external standard (OWASP, NIST, TOGAF, ITIL, etc.) you are summarizing                     | Tier 2       |
+
+If you are unsure of the tier, use the higher one. The reviewer confirms or corrects it.
 
 ## Contribution Principles
 
-When considering contributions, we're guided by several principles that align with the project's vision:
+- **One source of truth.** `.agents/AGENTS.md` and `.agents/protocols/` are canonical. Link to them; do not copy their
+  content into other files, because copies drift. Adapter files must import or point to `.agents/AGENTS.md`, never
+  restate it.
+- **Never weaken a gate silently.** A change that loosens human approval, the decision-record gate, the pre-MR gate, or
+  the "Data, not instructions" safeguard needs an explicit rationale in the issue and PR. If it opens a bypass, report
+  it privately instead (see [`SECURITY.md`](SECURITY.md)).
+- **No contradictions.** A rule, persona, skill, or adapter must not contradict `.agents/AGENTS.md` (see the precedence
+  list in [`.agents/rules/README.md`](.agents/rules/README.md)). If your change touches a statement made elsewhere,
+  update or link every place that makes it.
+- **Vendor neutral.** Governance must work for every supported tool. Tool-specific mechanics belong only in that tool's
+  adapter file.
+- **Small and testable.** Prefer a few high-signal, testable statements over long prose. Use `MUST` / `MUST NOT` /
+  `SHOULD` in rules, and give each rule file the sections listed in `.agents/rules/README.md` (Scope, Rule statements,
+  Rationale, Examples, Enforcement).
+- **Written for two audiences.** Every file must be readable by a human without tooling and parseable by an agent with
+  no memory of previous sessions (see [`.agents/protocols/devex-agentex.md`](.agents/protocols/devex-agentex.md)).
+  Prefer tables and numbered lists for anything an agent must follow.
+- **Templates stay templates.** The folders under `docs/` ship templates and READMEs for adopters. Do not add
+  product-specific stories, decision records, or change records to them.
 
-- **Best Practices**: We want this application to be canonical and reflect the best practices in the industry and in
-  .NET and Angular.
+## Style
 
-- **Selectivity in Tools and Libraries**: There is a rich ecosystem of tools, projects, and libraries out there, and we
-  cannot use all of them in this sample. We would like this repo to reflect the use of a realistic set of technologies,
-  not to be a showcase or example of every possible thing it could use.
+- Markdown, wrapped at 120 columns (tables excepted).
+- Refer to files by repository-relative path in backticks, e.g., `.agents/protocols/maintainability.md`.
+- Use the existing terms consistently: *decision record*, *shared trunk*, *MR/PR*, *tier*, *gate*, *persona*.
 
-- **Architectural Integrity**: We welcome refactoring and architectural improvements, provided they're justified.
-  Large-scale changes should come with a clear rationale, such as significant enhancements to the application's design
-  or performance.
+## Pull Request Checklist
 
-- **Enhancing Reliability and Scalability**: We welcome contributions that improve the application's reliability and
-  scalability. These could include updates to error handling, redundancy mechanisms, data access, and any other changes
-  that help Co-Governed Agentic SDLC operate more robustly under load. We'd love to see relevant test scenarios or
-  metrics for these contributions.
+- [ ] The PR states its tier and a one-line rationale.
+- [ ] The PR links the issue it resolves (not needed for Tier 4).
+- [ ] No statement contradicts `.agents/AGENTS.md`, `.agents/protocols/`, or `.agents/rules/`.
+- [ ] Cross-references are updated: the directory maps in `README.md` and `.agents/AGENTS.md`, the adapter table in
+  `.agents/protocols/vendor-adapters.md`, and folder READMEs.
+- [ ] Relative links resolve.
+- [ ] Imported assets have a provenance entry (source, version, license, date imported).
+- [ ] AI assistance, if any, is disclosed.
 
-- **Performance Enhancements**: If you're looking to speed up Co-Governed Agentic SDLC, we're all for it! Please include
-  benchmark comparisons to demonstrate the improvements. Performance improvements that make the code less readable or
-  canonical may have more scrutiny applied.
+The maintainer updates [`VERSION`](VERSION) when releasing; do not change it in your PR.
+
+## Reporting Security Issues
+
+Do not report vulnerabilities, such as a way to make an agent bypass a gate, in a public issue. Follow
+[`SECURITY.md`](SECURITY.md).
+
+## License
+
+By contributing, you agree that your contributions are licensed under the [MIT License](LICENSE.md).
 
 ## Code of Conduct
 
-To ensure a welcoming and positive environment for everyone, please adhere to our Code of Conduct. Respectful
-collaboration is key to a successful project.
+Please follow our [Code of Conduct](CODE_OF_CONDUCT.md). Respectful collaboration is key to a successful project.
