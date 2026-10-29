@@ -79,7 +79,8 @@ If you are unsure of the tier, use the higher one. The reviewer confirms or corr
 - [ ] Imported assets have a provenance entry (source, version, license, date imported).
 - [ ] AI assistance, if any, is disclosed.
 
-The maintainer updates [`VERSION`](VERSION) when releasing; do not change it in your PR.
+The maintainer updates [`VERSION`](VERSION) and [`CHANGELOG.md`](CHANGELOG.md) when releasing; do not change them in
+your PR.
 
 ## Reporting Security Issues
 

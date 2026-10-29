@@ -23,3 +23,6 @@ superseded-by: ""
 
 ### Consequences
 
+## Sources
+
+* <!-- path and section for each identifier in depends-on -->

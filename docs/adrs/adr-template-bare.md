@@ -45,3 +45,7 @@ Chosen option: "", because
 * Bad, because
 
 ## More Information
+
+## Sources
+
+* <!-- path and section for each identifier in depends-on -->

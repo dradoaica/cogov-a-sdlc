@@ -11,8 +11,8 @@ Only the latest version on the `main` branch is supported. The current version i
 file. Fixes are released as a new version; they are not backported.
 
 If you have adopted the framework into your own repository, compare your copy of `.agents/` and the adapter files
-against the latest version and pull in security fixes. If you cannot update, please tell us why in your report so we
-understand your situation.
+against the latest version and pull in security fixes ([`CHANGELOG.md`](CHANGELOG.md) lists what changed per
+version). If you cannot update, please tell us why in your report so we understand your situation.
 
 ## What to Report
 
