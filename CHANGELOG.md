@@ -3,6 +3,23 @@
 Notable changes per version. The current version is in [`VERSION`](VERSION). Versions before 1.1.7 are reconstructed
 from the commit history.
 
+## 1.1.8 – 2026-10-29
+
+First steps to improve human and multi-agent co‑governance across SSDLC:
+
+- Rule 02 (`.agents/rules/02-governance-checks.md`): `scripts/govern_check.py`, a read-only, standard-library
+  Python 3.13+ checker for the mechanical governance rules (GOV-00 to GOV-11), with tests; added to the pre-MR gate
+  and the reconciliation step.
+- Review-load limit: at most three items awaiting one human reviewer, across all agents (`.agents/AGENTS.md`).
+- Multi-agent: `orchestrator` persona, `cmd-dispatch-subagent` command (dispatch spec), Model assignment table by
+  work and tier, and a `Model` field in the Agent Turn Handoff.
+- Leaner always-loaded contract (`.agents/AGENTS.md` 12% smaller than in 1.1.7): the decision tree and persona ownership
+  table
+  moved to `.agents/protocols/governance-artifacts.md`, the pressure-response scripts to
+  `.agents/protocols/pressure-responses.md`; the concepts quick index defers to `.agents/concepts/README.md`.
+- Empty `application-*/` subfolders are not applicable unless the task targets them.
+- Kiro adapter: `.kiro/steering/co-governed-a-sdlc.md` (includes `.agents/AGENTS.md`) and a `.kiro/skills` symlink.
+
 ## 1.1.7 – 2026-10-29
 
 - Rewrote `CODE_OF_CONDUCT.md`, `CONTRIBUTING.md`, and `SECURITY.md` (tiered contribution table, private
@@ -55,7 +72,7 @@ from the commit history.
 
 ## 1.0.8 – 2026-10-17
 
-- Imported the `ponytail` skill family (6 skills) for the full-stack developer persona.
+- Imported the `ponytail` skill family (six skills) for the full-stack developer persona.
 
 ## 1.0.7 – 2026-10-14
 

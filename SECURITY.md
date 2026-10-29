@@ -1,8 +1,9 @@
 # Security Policy
 
-Co-Governed Agentic SDLC is a governance framework, not an application. It ships no runtime code; its "attack surface"
-is the set of instructions that AI agents load and execute: `.agents/AGENTS.md`, `.agents/protocols/`, `.agents/rules/`,
-the vendor adapter files, and the templates under `docs/`. A defect in those instructions can let an agent bypass a
+Co-Governed Agentic SDLC is a governance framework, not an application. Its only runtime code is one optional,
+read-only checker, `scripts/govern_check.py`; its "attack surface" is the set of instructions that AI agents load and
+execute: `.agents/AGENTS.md`, `.agents/protocols/`, `.agents/rules/`, the vendor adapter files, the templates under
+`docs/`, and that checker. A defect in those instructions can let an agent bypass a
 human approval gate in every project that adopts the framework, so we treat such defects as security vulnerabilities.
 
 ## Supported Versions
@@ -18,6 +19,8 @@ version). If you cannot update, please tell us why in your report so we understa
 
 In scope (report privately, see below):
 
+- **Checker defects.** A check in `scripts/govern_check.py` that passes a violation it claims to catch, or any path
+  by which the checker writes files, uses the network, or runs commands other than read-only `git`.
 - **Gate bypass.** Wording in `.agents/AGENTS.md`, a protocol, a rule, or an adapter that lets an agent approve or merge
   its own work, set a decision record to `Accepted`, fill in `approved-by`, skip the pre-MR gate, or start Tier 1 work
   without an `Accepted` decision record (see `.agents/rules/00-no-self-approval.md`).

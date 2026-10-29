@@ -76,6 +76,8 @@ If you are unsure of the tier, use the higher one. The reviewer confirms or corr
 - [ ] Cross-references are updated: the directory maps in `README.md` and `.agents/AGENTS.md`, the adapter table in
   `.agents/protocols/vendor-adapters.md`, and folder READMEs.
 - [ ] Relative links resolve.
+- [ ] `python3 -I scripts/govern_check.py --base origin/main` and `python3 -I -m unittest discover -s scripts/tests`
+  pass, or each finding is explained in the PR.
 - [ ] Imported assets have a provenance entry (source, version, license, date imported).
 - [ ] AI assistance, if any, is disclosed.
 
