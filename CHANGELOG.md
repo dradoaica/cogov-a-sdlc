@@ -3,6 +3,13 @@
 Notable changes per version. The current version is in [`VERSION`](VERSION). Versions before 1.1.7 are reconstructed
 from the commit history.
 
+## 1.2.0 – 2026-10-31
+
+- Grok Build (xAI CLI) support: root `AGENTS.md` adapter and a `.grok/skills` symlink to `.agents/skills`.
+- Leaner always-loaded contract: the pre-MR gate checklist moved to `.agents/protocols/pre-mr-gate.md` (loaded when
+  opening an MR/PR); `.agents/AGENTS.md` keeps the obligation and the no-self-approval rule. Governance Guardrails no
+  longer restates the tier matrix.
+
 ## 1.1.9 – 2026-10-29
 
 - Rule 10: skills from public repositories with no license yet may be imported, recorded as unlicensed and accepted
