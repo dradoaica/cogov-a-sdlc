@@ -3,6 +3,16 @@
 Notable changes per version. The current version is in [`VERSION`](VERSION). Versions before 1.1.7 are reconstructed
 from the commit history.
 
+## 1.2.1 – 2026-11-06
+
+Changes to catch honest mistakes, with no new code or dependencies:
+
+- Independent review: Tier 1–2 MRs/PRs now need a review by an agent with no shared context, reported in the description
+  (`.agents/protocols/pre-mr-gate.md`, new `independent-reviewer` persona). Open findings go to the human; they do not
+  block the MR/PR, and a clean review is not approval.
+- Existing codebases: new `cmd-map-existing-code` command records what a system actually is, with evidence and the
+  commit it describes, before the first Tier 1–2 work on it (stored in `docs/initial-product-specs/`).
+
 ## 1.2.0 – 2026-10-31
 
 - Grok Build (xAI CLI) support: root `AGENTS.md` adapter and a `.grok/skills` symlink to `.agents/skills`.
