@@ -3,6 +3,13 @@
 Notable changes per version. The current version is in [`VERSION`](VERSION). Versions before 1.1.7 are reconstructed
 from the commit history.
 
+## 1.2.2 – 2026-11-07
+
+- `ub-mode` skill: updated to upstream `3da62bf`, which adds an MIT license (the skill text is unchanged); the
+  provenance row no longer records it as unlicensed.
+- Imported skills now ship the upstream `LICENSE` file next to each `SKILL.md` (`ponytail`, `ponytail-*`, `ub-mode`),
+  as MIT requires the copyright and permission notice in every copy.
+
 ## 1.2.1 – 2026-11-06
 
 Changes to catch honest mistakes, with no new code or dependencies:
